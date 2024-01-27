@@ -1,0 +1,16 @@
+services:
+  rustexample:
+    image: rustlatest
+    volumes:
+      - type: bind
+        source: /home/drone/git/morning_alarm/commit_watch/
+        target: /home/drone/git/morning_alarm//commit_watch/ 
+    build:
+      context: ./commit_watch/src/
+    develop:
+      watch:
+        - action: rebuild
+          path: ./commit_watch/src/
+          ignore:
+            - ./commit_watch/target/
+
